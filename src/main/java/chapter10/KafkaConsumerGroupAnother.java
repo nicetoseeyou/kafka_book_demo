@@ -1,5 +1,9 @@
 package chapter10;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,10 +11,6 @@ import com.fasterxml.jackson.module.scala.DefaultScalaModule;
 import kafka.admin.ConsumerGroupCommand;
 import lombok.Builder;
 import lombok.Data;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -39,7 +39,7 @@ public class KafkaConsumerGroupAnother {
                 collectGroupOffsets()._2.get());
         //4. 将JSON字符串反序列化成Java对象
         List<PartitionAssignmentStateAnother> target = mapper.readValue(source,
-                getCollectionType(mapper,List.class,
+                getCollectionType(mapper, List.class,
                         PartitionAssignmentStateAnother.class));
         //5. 排序
         target.sort((o1, o2) -> o1.getPartition() - o2.getPartition());
@@ -80,7 +80,7 @@ class PartitionAssignmentStateAnother {
     private long logSize;
 
     @Data
-    public static class Node{
+    public static class Node {
         public int id;
         public String idString;
         public String host;

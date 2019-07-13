@@ -1,14 +1,16 @@
 package chapter3;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 代码清单3-1
@@ -16,6 +18,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 @Slf4j
 public class KafkaConsumerAnalysis {
+    private static final Logger log = LoggerFactory.getLogger(KafkaConsumerAnalysis.class);
+
     public static final String brokerList = "localhost:9092";
     public static final String topic = "topic-demo";
     public static final String groupId = "group.demo";

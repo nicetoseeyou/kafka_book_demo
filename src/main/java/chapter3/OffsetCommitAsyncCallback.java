@@ -1,20 +1,30 @@
 package chapter3;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.*;
-import org.apache.kafka.common.TopicPartition;
-import org.apache.kafka.common.serialization.StringDeserializer;
-
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.OffsetAndMetadata;
+import org.apache.kafka.clients.consumer.OffsetCommitCallback;
+import org.apache.kafka.common.TopicPartition;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by 朱小厮 on 2018/7/29.
  */
 @Slf4j
 public class OffsetCommitAsyncCallback {
+    private static final Logger log = LoggerFactory.getLogger(OffsetCommitAsyncCallback.class);
+
     public static final String brokerList = "localhost:9092";
     public static final String topic = "topic-demo";
     public static final String groupId = "group.demo";
@@ -40,7 +50,7 @@ public class OffsetCommitAsyncCallback {
 
         try {
             while (running.get()) {
-                ConsumerRecords<String, String> records = consumer.poll(1000);
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
                 for (ConsumerRecord<String, String> record : records) {
                     //do some logical processing.
                 }

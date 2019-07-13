@@ -1,19 +1,31 @@
 package chapter10;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Properties;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.CommonClientConfigs;
-import org.apache.kafka.clients.admin.*;
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.ConsumerGroupDescription;
+import org.apache.kafka.clients.admin.DescribeConsumerGroupsResult;
+import org.apache.kafka.clients.admin.ListConsumerGroupOffsetsResult;
+import org.apache.kafka.clients.admin.MemberAssignment;
+import org.apache.kafka.clients.admin.MemberDescription;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.consumer.OffsetAndMetadata;
 import org.apache.kafka.common.Node;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
-
-import java.util.*;
-import java.util.concurrent.ExecutionException;
 
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
@@ -32,7 +44,7 @@ public class KafkaConsumerGroupService {
         this.brokerList = brokerList;
     }
 
-    public void init(){
+    public void init() {
         Properties props = new Properties();
         props.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, brokerList);
         adminClient = AdminClient.create(props);
@@ -40,7 +52,7 @@ public class KafkaConsumerGroupService {
                 "kafkaAdminClientDemoGroupId");
     }
 
-    public void close(){
+    public void close() {
         if (adminClient != null) {
             adminClient.close();
         }
@@ -127,7 +139,7 @@ public class KafkaConsumerGroupService {
                     .offset(offset).consumerId(member.consumerId())
                     .host(member.host()).clientId(member.clientId())
                     .logSize(logSize).build();
-        }else {
+        } else {
             return PartitionAssignmentState.builder()
                     .group(group).coordinator(description.coordinator())
                     .topic(tp.topic()).partition(tp.partition())
@@ -177,7 +189,7 @@ public class KafkaConsumerGroupService {
     }
 }
 
-class ConsumerGroupUtils{
+class ConsumerGroupUtils {
     public static KafkaConsumer<String, String> createNewConsumer(
             String brokerUrl, String groupId) {
         Properties props = new Properties();

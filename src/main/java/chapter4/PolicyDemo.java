@@ -1,9 +1,9 @@
 package chapter4;
 
+import java.util.Map;
+
 import org.apache.kafka.common.errors.PolicyViolationException;
 import org.apache.kafka.server.policy.CreateTopicPolicy;
-
-import java.util.Map;
 
 /**
  * 代码清单4-6
@@ -22,12 +22,12 @@ public class PolicyDemo implements CreateTopicPolicy {
                 requestMetadata.replicationFactor() != null) {
             if (requestMetadata.numPartitions() < 5) {
                 throw new PolicyViolationException("Topic should have at " +
-                        "least 5 partitions, received: "+
+                        "least 5 partitions, received: " +
                         requestMetadata.numPartitions());
             }
             if (requestMetadata.replicationFactor() <= 1) {
                 throw new PolicyViolationException("Topic should have at " +
-                        "least 2 replication factor, recevied: "+
+                        "least 2 replication factor, recevied: " +
                         requestMetadata.replicationFactor());
             }
         }

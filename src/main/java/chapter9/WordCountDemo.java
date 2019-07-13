@@ -1,5 +1,10 @@
 package chapter9;
 
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.concurrent.CountDownLatch;
+
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
@@ -8,11 +13,6 @@ import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.KTable;
 import org.apache.kafka.streams.kstream.Produced;
-
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.Properties;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * 代码清单9-2

@@ -1,14 +1,15 @@
 package chapter3;
 
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.Properties;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-
-import java.util.Arrays;
-import java.util.Properties;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by 朱小厮 on 2018/7/29.
@@ -39,7 +40,7 @@ public class OffsetCommitSync {
 
         try {
             while (running.get()) {
-                ConsumerRecords<String, String> records = consumer.poll(1000);
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
                 for (ConsumerRecord<String, String> record : records) {
                     //do some logical processing.
                 }

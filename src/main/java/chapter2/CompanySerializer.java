@@ -1,10 +1,10 @@
 package chapter2;
 
-import org.apache.kafka.common.serialization.Serializer;
-
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.util.Map;
+
+import org.apache.kafka.common.serialization.Serializer;
 
 /**
  * 代码清单2-3

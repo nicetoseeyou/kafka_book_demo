@@ -1,10 +1,10 @@
 package chapter7;
 
-import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
-import org.apache.kafka.common.TopicPartition;
-
 import java.util.Collection;
 import java.util.Collections;
+
+import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
+import org.apache.kafka.common.TopicPartition;
 
 /**
  * Created by 朱小厮 on 2019-03-02.

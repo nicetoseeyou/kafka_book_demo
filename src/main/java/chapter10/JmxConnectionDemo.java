@@ -1,6 +1,12 @@
 package chapter10;
 
-import javax.management.*;
+import javax.management.AttributeNotFoundException;
+import javax.management.InstanceNotFoundException;
+import javax.management.MBeanException;
+import javax.management.MBeanServerConnection;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
+import javax.management.ReflectionException;
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
@@ -19,7 +25,7 @@ public class JmxConnectionDemo {
         this.ipAndPort = ipAndPort;
     }
 
-    public boolean init(){
+    public boolean init() {
         jmxURL = "service:jmx:rmi:///jndi/rmi://" + ipAndPort + "/jmxrmi";
         try {
             JMXServiceURL serviceURL = new JMXServiceURL(jmxURL);
@@ -34,7 +40,6 @@ public class JmxConnectionDemo {
         }
         return true;
     }
-
 
 
     public double getMsgInPerSec() {

@@ -1,9 +1,9 @@
 package chapter1;
 
+import java.util.Properties;
+
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-
-import java.util.Properties;
 
 /**
  * 代码清单1-1

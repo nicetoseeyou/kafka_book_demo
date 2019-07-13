@@ -1,12 +1,12 @@
 package chapter3;
 
+import java.util.Map;
+
 import chapter2.Company;
 import io.protostuff.ProtostuffIOUtil;
 import io.protostuff.Schema;
 import io.protostuff.runtime.RuntimeSchema;
 import org.apache.kafka.common.serialization.Deserializer;
-
-import java.util.Map;
 
 /**
  * Created by 朱小厮 on 2018/7/26.

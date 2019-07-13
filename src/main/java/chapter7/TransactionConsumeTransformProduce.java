@@ -1,6 +1,17 @@
 package chapter7;
 
-import org.apache.kafka.clients.consumer.*;
+import java.time.Duration;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.OffsetAndMetadata;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -9,9 +20,6 @@ import org.apache.kafka.common.errors.ProducerFencedException;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
-import java.time.Duration;
-import java.util.*;
-
 /**
  * 代码清单7-3
  * Created by 朱小厮 on 2018/10/18.
@@ -19,7 +27,7 @@ import java.util.*;
 public class TransactionConsumeTransformProduce {
     public static final String brokerList = "10.198.197.73:9092";
 
-    public static Properties getConsumerProperties(){
+    public static Properties getConsumerProperties() {
         Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, brokerList);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
@@ -31,7 +39,7 @@ public class TransactionConsumeTransformProduce {
         return props;
     }
 
-    public static Properties getProducerProperties(){
+    public static Properties getProducerProperties() {
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, brokerList);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
@@ -77,7 +85,7 @@ public class TransactionConsumeTransformProduce {
                                 new OffsetAndMetadata(lastConsumedOffset + 1));
                     }
                     //提交消费位移
-                    producer.sendOffsetsToTransaction(offsets,"groupId");
+                    producer.sendOffsetsToTransaction(offsets, "groupId");
                     //提交事务
                     producer.commitTransaction();
                 } catch (ProducerFencedException e) {

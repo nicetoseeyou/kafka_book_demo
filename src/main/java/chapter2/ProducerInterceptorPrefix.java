@@ -1,10 +1,10 @@
 package chapter2;
 
+import java.util.Map;
+
 import org.apache.kafka.clients.producer.ProducerInterceptor;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
-
-import java.util.Map;
 
 /**
  * 代码清单2-6

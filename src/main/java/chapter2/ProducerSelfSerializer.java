@@ -1,12 +1,12 @@
 package chapter2;
 
+import java.util.Properties;
+import java.util.concurrent.ExecutionException;
+
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
-
-import java.util.Properties;
-import java.util.concurrent.ExecutionException;
 
 /**
  * 代码清单2-4
@@ -29,8 +29,7 @@ public class ProducerSelfSerializer {
 
         KafkaProducer<String, Company> producer =
                 new KafkaProducer<>(properties);
-        Company company = Company.builder().name("hiddenkafka")
-                .address("China").build();
+        Company company = new Company("hiddenkafka", "China");
 //        Company company = Company.builder().name("hiddenkafka")
 //                .address("China").telphone("13000000000").build();
         ProducerRecord<String, Company> record =

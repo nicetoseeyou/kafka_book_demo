@@ -1,15 +1,15 @@
 package chapter2;
 
-import org.apache.kafka.common.errors.SerializationException;
-import org.apache.kafka.common.serialization.Serializer;
-
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
+
+import org.apache.kafka.common.errors.SerializationException;
+import org.apache.kafka.common.serialization.Serializer;
 
 /**
  * 代码清单2-2
  * 摘抄至Kafka源码：org.apache.kafka.common.serialization.StringSerializer
- *
+ * <p>
  * Created by 朱小厮 on 2019-02-27
  */
 public class StringSerializer implements Serializer<String> {

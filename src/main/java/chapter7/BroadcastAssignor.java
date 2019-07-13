@@ -1,12 +1,12 @@
 package chapter7;
 
-import org.apache.kafka.clients.consumer.internals.AbstractPartitionAssignor;
-import org.apache.kafka.common.TopicPartition;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.kafka.clients.consumer.internals.AbstractPartitionAssignor;
+import org.apache.kafka.common.TopicPartition;
 
 /**
  * Created by 朱小厮 on 2019-03-02.
@@ -35,7 +35,7 @@ public class BroadcastAssignor extends AbstractPartitionAssignor {
                 assignment.put(memberId, new ArrayList<>()));
 
         //针对每一个主题，为每一个订阅的消费者分配所有的分区
-        consumersPerTopic.entrySet().forEach(topicEntry->{
+        consumersPerTopic.entrySet().forEach(topicEntry -> {
             String topic = topicEntry.getKey();
             List<String> members = topicEntry.getValue();
 
@@ -43,7 +43,7 @@ public class BroadcastAssignor extends AbstractPartitionAssignor {
             if (numPartitionsForTopic == null || members.isEmpty())
                 return;
             List<TopicPartition> partitions = AbstractPartitionAssignor
-                .partitions(topic, numPartitionsForTopic);
+                    .partitions(topic, numPartitionsForTopic);
             if (!partitions.isEmpty()) {
                 members.forEach(memberId ->
                         assignment.get(memberId).addAll(partitions));

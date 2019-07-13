@@ -28,17 +28,17 @@ object RDDWithKafka {
     )
 
     val offsetRanges = Array(
-      OffsetRange(topic,0,0,100),
-      OffsetRange(topic,1,0,100),
-      OffsetRange(topic,2,0,100),
-      OffsetRange(topic,3,0,100)
+      OffsetRange(topic, 0, 0, 100),
+      OffsetRange(topic, 1, 0, 100),
+      OffsetRange(topic, 2, 0, 100),
+      OffsetRange(topic, 3, 0, 100)
     )
     val rdd = KafkaUtils.createRDD(ssc,
       JavaConversions.mapAsJavaMap(kafkaParams),
       offsetRanges, PreferConsistent)
-    rdd.foreachPartition(records=>{
-      records.foreach(record=>{
-        println(record.topic()+":"+record.partition()+":"+ record.value())
+    rdd.foreachPartition(records => {
+      records.foreach(record => {
+        println(record.topic() + ":" + record.partition() + ":" + record.value())
       })
     })
   }

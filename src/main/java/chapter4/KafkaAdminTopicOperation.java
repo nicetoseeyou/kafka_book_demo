@@ -1,9 +1,19 @@
 package chapter4;
 
-import org.apache.kafka.clients.admin.*;
-
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.ExecutionException;
+
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.AdminClientConfig;
+import org.apache.kafka.clients.admin.CreateTopicsResult;
+import org.apache.kafka.clients.admin.DescribeTopicsResult;
+import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.clients.admin.TopicDescription;
 
 /**
  * 代码清单4-3 & 4-4
@@ -13,8 +23,8 @@ public class KafkaAdminTopicOperation {
     public static final String brokerList = "localhost:9092";
     public static final String topic = "topic-admin";
 
-    public static void describeTopic(){
-        String brokerList =  "localhost:9092";
+    public static void describeTopic() {
+        String brokerList = "localhost:9092";
         String topic = "topic-admin";
 
         Properties props = new Properties();
@@ -24,7 +34,7 @@ public class KafkaAdminTopicOperation {
 
         DescribeTopicsResult result = client.describeTopics(Collections.singleton(topic));
         try {
-            Map<String, TopicDescription> descriptionMap =  result.all().get();
+            Map<String, TopicDescription> descriptionMap = result.all().get();
             System.out.println(descriptionMap.get(topic));
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
@@ -33,7 +43,7 @@ public class KafkaAdminTopicOperation {
     }
 
     public static void createTopic() {
-        String brokerList =  "localhost:9092";
+        String brokerList = "localhost:9092";
         String topic = "topic-admin";
 
         Properties props = new Properties();
@@ -66,8 +76,8 @@ public class KafkaAdminTopicOperation {
         client.close();
     }
 
-    public static void deleteTopic(){
-        String brokerList =  "localhost:9092";
+    public static void deleteTopic() {
+        String brokerList = "localhost:9092";
         String topic = "topic-admin";
 
         Properties props = new Properties();

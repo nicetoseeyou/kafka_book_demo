@@ -1,12 +1,12 @@
 package chapter11;
 
+import java.util.Properties;
+import java.util.concurrent.ExecutionException;
+
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.internals.RecordHeader;
 import org.apache.kafka.common.header.internals.RecordHeaders;
-
-import java.util.Properties;
-import java.util.concurrent.ExecutionException;
 
 /**
  * 代码清单11-1

@@ -1,12 +1,12 @@
 package chapter3;
 
-import chapter2.Company;
-import org.apache.kafka.common.errors.SerializationException;
-import org.apache.kafka.common.serialization.Deserializer;
-
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.util.Map;
+
+import chapter2.Company;
+import org.apache.kafka.common.errors.SerializationException;
+import org.apache.kafka.common.serialization.Deserializer;
 
 /**
  * Created by 朱小厮 on 2018/7/26.
@@ -40,8 +40,7 @@ public class CompanyDeserailizer implements Deserializer<Company> {
         } catch (UnsupportedEncodingException e) {
             throw new SerializationException("Error occur when deserializing!");
         }
-
-        return Company.builder().name(name).address(address).build();
+        return new Company(name, address);
     }
 
     public void close() {

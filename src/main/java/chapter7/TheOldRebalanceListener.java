@@ -1,9 +1,9 @@
 package chapter7;
 
+import java.util.Collection;
+
 import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
 import org.apache.kafka.common.TopicPartition;
-
-import java.util.Collection;
 
 /**
  * Created by 朱小厮 on 2019-03-02.
